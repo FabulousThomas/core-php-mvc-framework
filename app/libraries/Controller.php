@@ -14,5 +14,14 @@ class Controller
       return new $model;
    }
 
-   
+   public function view($view, $data = [])
+   {
+      // Check if view exists
+      if (file_exists('../app/views/' . $view . '.php')) {
+         // Require view
+         require_once '../app/views/' . $view . '.php';
+      } else {
+         die('View does not exist');
+      }
+   }
 }
