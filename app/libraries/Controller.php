@@ -14,6 +14,7 @@ class Controller
       return new $model;
    }
 
+   // Load view
    public function view($view, $data = [])
    {
       // Check if view exists
