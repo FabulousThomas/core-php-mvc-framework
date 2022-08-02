@@ -1,11 +1,12 @@
-<?php 
+<?php
 /*
  * Creates Database connection
  * Binds values
  * Query data from database
  * Executes query
  */
-class Database {
+class Database
+{
    private $host = DB_HOST;
    private $user = DB_USER;
    private $pass = DB_PASS;
@@ -31,4 +32,27 @@ class Database {
          echo $this->error;
       }
    }
+
+   // Bind values
+   public function bind($param, $value, $type = null)
+   {
+      if (is_null($type)) {
+         switch (true) {
+            case is_null($type):
+               $value = PDO::PARAM_NULL;
+               break;
+            case is_int($type):
+               $value = PDO::PARAM_INT;
+               break;
+            case is_bool($type):
+               $value = PDO::PARAM_BOOL;
+               break;
+            default:
+               $value = PDO::PARAM_STR;
+         }
+      }
+      $this->stmt->bindValue($param, $value, $type);
+   }
+
+   // 
 }
