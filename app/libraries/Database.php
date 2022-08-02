@@ -54,5 +54,10 @@ class Database
       $this->stmt->bindValue($param, $value, $type);
    }
 
-   // 
+   // Sql query
+   public function query($sql) {
+      $this->stmt = $this->dbh->prepare($sql);
+   }
+
+
 }
