@@ -59,5 +59,10 @@ class Database
       $this->stmt = $this->dbh->prepare($sql);
    }
 
+   // Execute statement
+   public function execute() {
+      return $this->stmt->execute();
+   }
+
 
 }
