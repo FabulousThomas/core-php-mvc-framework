@@ -69,5 +69,11 @@ class Database
       return $this->stmt->rowCount();
    }
 
+   // Get result set with array of object
+   public function resultSet() {
+      $this->stmt->execute();
+      return $this->stmt->fetchAll(PDO::FETCH_OBJ);
+   }
+
 
 }
