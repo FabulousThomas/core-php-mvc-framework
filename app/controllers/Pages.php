@@ -7,8 +7,8 @@ class Pages extends Controller {
 
    public function index() {
       $data = [
-         'title' => 'Index (Home Page)',
-         'description' => 'Index Page'
+         'title' => 'Core PHP MVC Framework',
+         'description' => 'A simple open source Core PHP MVC Framework'
       ];
       $this->view('pages/index', $data);
    }
