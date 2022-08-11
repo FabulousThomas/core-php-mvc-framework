@@ -1,3 +1,11 @@
+<?php require APPROOT . '/views/inc/head.php'?>
+<?php require APPROOT . '/views/inc/navbar.php'?>
 
-<h1><?php echo $data['title'] ?></h1>
-<h3><?php echo $data['description'] ?></h3>
+   <div class="container">
+      <h1 class=""><?php echo $data['title'] ?></h1>
+      <p class="lead"><?php echo $data['description'] ?></p>
+
+      <small>Version: <strong><?php echo APPVERSION; ?></strong></small>
+   </div>
+
+<?php require APPROOT . '/views/inc/footer.php'?>
