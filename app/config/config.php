@@ -9,7 +9,7 @@ define('DB_NAME', 'YOUR_DATABASE_NAME');
 // App root directory
 define('APPROOT', dirname(dirname(__FILE__)));
 // Url root / EXAMPLE: "https://github.com/FabulousThomas"
-define('URLROOT', 'YOUR_URL_ROOT');
+define('URLROOT', 'http://localhost/core-php-mvc-framework');
 // Site Name
 define('SITENAME', 'YOUR_WEB_SITE_NAME');
 // App version
