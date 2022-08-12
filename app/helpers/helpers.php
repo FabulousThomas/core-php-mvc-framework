@@ -1,6 +1,7 @@
 <?php
+
 session_start();
-function flash_msg($name = '', $class = '', $message = 'alert alert-success')
+function flash_msg($name = '', $message = '', $class = 'alert alert-success')
 {
    if (!empty($name)) {
       if (!empty($message) && empty($_SESSION[$name])) {
@@ -22,6 +23,7 @@ function flash_msg($name = '', $class = '', $message = 'alert alert-success')
       }
    }
 }
+
 
 // Url redirect
 function redirect($page) {
