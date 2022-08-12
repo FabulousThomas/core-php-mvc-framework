@@ -7,8 +7,7 @@
       <p class="lead mb-0"><?php echo $data['description'] ?></p>
    </div>
 
-   <div class="card card-body px-0 col-lg-6 col-md-12 m-auto shadow border-0 rounded-0">
-      <div class="container">
+   <div class="card card-body px-2 col-lg-6 col-md-12 m-auto shadow border-0 rounded-0">
          <form action="<?php echo URLROOT; ?>/users/login" method="POST" enctype="multipart/form-data">
          <?php flash_msg('register_msg'); ?>
             <div class="form-group mb-3">
@@ -30,7 +29,7 @@
                </div>
             </div>
          </form>
-      </div>
+         
    </div>
 </div>
 
