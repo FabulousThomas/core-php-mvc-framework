@@ -9,11 +9,11 @@
 
    <div class="card card-body px-2 col-lg-6 col-md-12 m-auto shadow border-0 rounded-0">
          <form action="<?php echo URLROOT; ?>/users/login" method="POST" enctype="multipart/form-data">
-         <?php flash_msg('register_msg'); ?>
+         <?php flash_msg('users_msg'); ?>
             <div class="form-group mb-3">
-               <label for="username">Username</label>
-               <input type="text" class="form-control <?php echo (!empty($data['username_err'])) ? 'is-invalid' : ''; ?> rounded-0" name="username" placeholder="Enter Username" value="<?php echo $data['username'] ?>">
-               <small class="invalid-feedback"><?php echo $data['username_err'] ?></small>
+               <label for="email">Email</label>
+               <input type="email" class="form-control <?php echo (!empty($data['email_err'])) ? 'is-invalid' : ''; ?> rounded-0" name="email" placeholder="Enter Email" value="<?php echo $data['email'] ?>">
+               <small class="invalid-feedback"><?php echo $data['email_err'] ?></small>
             </div>
             <div class="form-group mb-3">
                <label for="password">Password</label>
