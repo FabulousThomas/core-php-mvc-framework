@@ -95,7 +95,6 @@ class Users extends Controller
             'description' => 'Please, Login to proceed',
             'email' => trim($_POST['email']),
             'password' => trim($_POST['password']),
-            'username' => '',
             'email_err' => '',
             'password_err' => '',
          ];
@@ -137,7 +136,6 @@ class Users extends Controller
             'description' => 'Please, Login to proceed',
             'email' => '',
             'password' => '',
-            'username' => '',
             'email_err' => '',
             'password_err' => '',
          ];
@@ -149,7 +147,6 @@ class Users extends Controller
    public function createLoginSession()
    {
       $_SESSION['email'] = $this->data['email'];
-      $_SESSION['username'] = $this->data['username'];
       $_SESSION['password'] = $this->data['password'];
       // redirect URL on SUCCESS ->>>
       redirect('pages/success');
@@ -159,7 +156,6 @@ class Users extends Controller
    public function logout()
    {
       unset($_SESSION['email']);
-      unset($_SESSION['username']);
       unset($_SESSION['password']);
       session_destroy();
       redirect('users/login');
