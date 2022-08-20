@@ -24,10 +24,17 @@ function flash_msg($name = '', $message = '', $class = 'alert alert-success')
    }
 }
 
-
-// Url redirect
-function redirect($page) {
-   header('Location: ' . URLROOT . '/' . $page);
+function isLoggedInUser()
+{
+   if (isset($_SESSION['email'])) {
+      return true;
+   } else {
+      return false;
+   }
 }
 
-
+// Url redirect
+function redirect($page)
+{
+   header('Location: ' . URLROOT . '/' . $page);
+}
