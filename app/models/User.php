@@ -48,6 +48,7 @@ class User
       }
    }
 
+   // Users register
    public function register($data)
    {
       $this->db->query('INSERT INTO users (name, username, email, password) VALUES (:name, :username, :email, :password)');
@@ -65,14 +66,13 @@ class User
       }
    }
 
+   // Users login
    public function login($email, $password)
    {
       $this->db->query('SELECT * FROM users WHERE email = :email AND password = :password');
       // Bind values
       $this->db->bind(':email', $email);
       $this->db->bind(':password', $password);
-
-      // $row = $this->db->singleSet();
 
       $this->db->singleSet();
 
@@ -81,6 +81,8 @@ class User
       } else {
          return false;
       }
+
+      // $row = $this->db->singleSet();
 
       // $hashed_password = $row->password;
 
@@ -98,7 +100,7 @@ class User
       $this->db->bind(':email', $email);
       $this->db->singleSet();
 
-      if($this->db->rowCount() > 0) {
+      if ($this->db->rowCount() > 0) {
          return true;
       } else {
          return false;
@@ -112,7 +114,30 @@ class User
       $this->db->bind(':username', $username);
       $this->db->singleSet();
 
-      if($this->db->rowCount() > 0) {
+      if ($this->db->rowCount() > 0) {
+         return true;
+      } else {
+         return false;
+      }
+   }
+
+   public function getUserById($id) {
+      $this->db->query('SELECT * FROM users WHERE id = :id');
+      $this->db->bind(':id', $id);
+
+      $row = $this->db->singleSet();
+
+      return $row;
+   }
+
+   // Check for Password
+   public function checkPassword($password)
+   {
+      $this->db->query('SELECT * FROM users WHERE password = :password');
+      $this->db->bind(':password', $password);
+      $this->db->singleSet();
+
+      if ($this->db->rowCount() > 0) {
          return true;
       } else {
          return false;
