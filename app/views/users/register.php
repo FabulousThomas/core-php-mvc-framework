@@ -10,7 +10,7 @@
    <div class="card card-body px-0 col-lg-6 col-md-12 m-auto shadow border-0 rounded-0">
       <div class="container">
          <form action="<?php echo URLROOT; ?>/users/register" method="POST" enctype="multipart/form-data">
-            
+
             <div class="form-group mb-2">
                <label class="mb-0" for="name">Name</label>
                <input type="text" class="form-control <?php echo (!empty($data['name_err'])) ? 'is-invalid' : ''; ?> rounded-0" name="name" placeholder="Enter Full Name" value="<?php echo $data['name'] ?>">
