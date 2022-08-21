@@ -26,7 +26,7 @@ function flash_msg($name = '', $message = '', $class = 'alert alert-success')
 
 function isLoggedInUser()
 {
-   if (isset($_SESSION['email'])) {
+   if (isset($_SESSION['user_id'])) {
       return true;
    } else {
       return false;
