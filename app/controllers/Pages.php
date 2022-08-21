@@ -13,7 +13,7 @@ class Pages extends Controller
       // if (!isLoggedInUser()) {
       //    redirect('pages/success');
       // }
-      $this->userModel = $this->model('User');
+      // $this->userModel = $this->model('User');
    }
 
    public function index()
@@ -39,7 +39,9 @@ class Pages extends Controller
 
    public function success()
    {
+      // $users = $this->userModel->getUserById($id);
       $data = [
+         // 'user' => $users,
          'title' => 'Login Success Page',
          'description' => 'Success Page'
       ];
