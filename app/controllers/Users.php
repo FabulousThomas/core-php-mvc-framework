@@ -146,12 +146,12 @@ class Users extends Controller
    // CHECK LOGGED IN USER
    public function createLoggedinSession($users)
    {
-      // $_SESSION['email'] = $this->data['email'];
-      // $_SESSION['password'] = $this->data['password'];
+      $_SESSION['email'] = $this->data['email'];
+      $_SESSION['password'] = $this->data['password'];
 
-      $_SESSION['user_id'] = $users->id;
-      $_SESSION['user_email'] = $users->email;
-      $_SESSION['user_name'] = $users->username;
+      // $_SESSION['user_id'] = $users->id;
+      // $_SESSION['user_email'] = $users->email;
+      // $_SESSION['user_name'] = $users->username;
       // redirect URL on SUCCESS ->>>
       redirect('pages/success');
    }
@@ -159,12 +159,12 @@ class Users extends Controller
    // USER LOGOUT SESSION
    public function logout()
    {
-      // unset($_SESSION['email']);
-      // unset($_SESSION['password']);
+      unset($_SESSION['email']);
+      unset($_SESSION['password']);
 
-      unset($_SESSION['user_id']);
-      unset($_SESSION['user_email']);
-      unset($_SESSION['user_name']);
+      // unset($_SESSION['user_id']);
+      // unset($_SESSION['user_email']);
+      // unset($_SESSION['user_name']);
       session_destroy();
       redirect('users/login');
    }
