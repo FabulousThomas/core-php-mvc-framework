@@ -55,7 +55,7 @@ class Users extends Controller
             // $this->data['password'] = password_hash($this->data['password'], PASSWORD_DEFAULT);
 
             if ($this->userModel->register($this->data)) {
-               flash_msg('users_msg', '<strong>Success!</strong> You can login');
+               flashMsg('users_msg', '<strong>Success!</strong> You can login');
                redirect('users/login');
             } else {
                die('Something went wrong');
@@ -149,9 +149,6 @@ class Users extends Controller
       $_SESSION['email'] = $this->data['email'];
       $_SESSION['password'] = $this->data['password'];
 
-      // $_SESSION['user_id'] = $users->id;
-      // $_SESSION['user_email'] = $users->email;
-      // $_SESSION['user_name'] = $users->username;
       // redirect URL on SUCCESS ->>>
       redirect('pages/success');
    }
@@ -161,10 +158,6 @@ class Users extends Controller
    {
       unset($_SESSION['email']);
       unset($_SESSION['password']);
-
-      // unset($_SESSION['user_id']);
-      // unset($_SESSION['user_email']);
-      // unset($_SESSION['user_name']);
       session_destroy();
       redirect('users/login');
    }
