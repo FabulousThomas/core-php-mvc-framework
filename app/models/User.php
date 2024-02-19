@@ -13,39 +13,6 @@ class User
    public function __construct()
    {
       $this->db = new Database;
-      $this->createDatabe();
-      $this->createTable();
-   }
-
-   // Create Database
-   public function createDatabe()
-   {
-      $this->db->query('CREATE DATABASE IF NOT EXISTS `coremvc`');
-
-      if ($this->db->execute()) {
-         return true;
-      } else {
-         return false;
-      }
-   }
-
-   // Create Table users
-   public function createTable()
-   {
-      $this->db->query('CREATE TABLE IF NOT EXISTS `coremvc`.`users` ( 
-         `id` INT NOT NULL AUTO_INCREMENT, 
-         `name` VARCHAR(255) NOT NULL, 
-         `username` VARCHAR(255) NOT NULL, 
-         `email` VARCHAR(255) NOT NULL, 
-         `password` VARCHAR(255) NOT NULL, 
-         `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, 
-         PRIMARY KEY (`id`)) ENGINE = InnoDB;');
-
-      if ($this->db->execute()) {
-         return true;
-      } else {
-         return false;
-      }
    }
 
    // Users register
@@ -121,7 +88,8 @@ class User
       }
    }
 
-   public function getUserById($id) {
+   public function getUserById($id)
+   {
       $this->db->query('SELECT * FROM users WHERE id = :id');
       $this->db->bind(':id', $id);
 
