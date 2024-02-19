@@ -2,10 +2,10 @@
 <?php require APPROOT . '/views/inc/navbar.php'?>
 
    <div class="container mt-3">
-      <h1 class=""><?php echo $data['title'] ?></h1>
-      <p class="lead"><?php echo $data['description'] ?></p>
+      <h1 class=""><?= $data['title'] ?></h1>
+      <p class="lead"><?= $data['description'] ?></p>
 
-      <small>Version: <strong><?php echo APPVERSION; ?></strong></small>
+      <small>Version: <strong><?= APPVERSION; ?></strong></small>
    </div>
 
 <?php require APPROOT . '/views/inc/footer.php'?>
