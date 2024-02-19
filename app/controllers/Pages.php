@@ -14,6 +14,7 @@ class Pages extends Controller
          'title' => 'Core PHP-MVC-Framework',
          'description' => 'A simple open source PHP-MVC-Framework'
       ];
+      
       $this->view('pages/index', $this->data);
    }
 
@@ -23,6 +24,7 @@ class Pages extends Controller
          'title' => 'About this Framework',
          'description' => 'About Page'
       ];
+
       $this->view('pages/about', $this->data);
    }
 
@@ -32,6 +34,7 @@ class Pages extends Controller
          'title' => 'Login Success Page',
          'description' => 'Success Page'
       ];
+
       $this->view('pages/success', $this->data);
    }
 }
