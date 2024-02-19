@@ -3,8 +3,8 @@
 
 <div class="container mt-3">
 <div class="jumbotron jumbotron-fluid text-center">
-      <h1 class="text-uppercase"><?php echo $data['title'] ?></h1>
-      <p class="lead"><?php echo $data['description'] ?></p>
+      <h1 class="text-uppercase"><?= $data['title'] ?></h1>
+      <p class="lead"><?= $data['description'] ?></p>
 </div>
 </div>
 
