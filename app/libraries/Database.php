@@ -67,19 +67,22 @@ class Database
    }
 
    // Get result set as array of object
-   public function resultSet() {
+   public function resultSet()
+   {
       $this->execute();
       return $this->stmt->fetchAll(PDO::FETCH_OBJ);
    }
 
-    // Get single set as object
-    public function singleSet() {
+   // Get single set as object
+   public function singleSet()
+   {
       $this->execute();
       return $this->stmt->fetch(PDO::FETCH_OBJ);
    }
 
    // Get row count
-   public function rowCount() {
+   public function rowCount()
+   {
       return $this->stmt->rowCount();
    }
 }
