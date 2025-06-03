@@ -2,7 +2,7 @@
 class Users extends Controller
 {
    private $data = [];
-   private $userModel = '';
+   private $userModel;
    public function __construct()
    {
       $this->userModel = $this->model('User');
