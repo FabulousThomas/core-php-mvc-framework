@@ -1,7 +1,5 @@
 <?php
 
-session_start();
-
 /**
  * This function is used to display flash messages
  *
@@ -86,7 +84,7 @@ function filteration(array $type): array
  * @param string $path The path where the image should be uploaded
  * @return string The name of the uploaded image
  */
-function imageUpload(string $img_name, string $path) : ?string
+function imageUpload(string $img_name, string $path): string 
 {
     $ext = pathinfo($_FILES[$img_name]['name'], PATHINFO_EXTENSION);
     $image = random_int(1111111, 9999999) . '.' . $ext;
@@ -95,5 +93,6 @@ function imageUpload(string $img_name, string $path) : ?string
         return $image;
     } else {
         flashMsg('success', 'Image Upload Error', 'alert-danger');
+        return '';
     }
 }
