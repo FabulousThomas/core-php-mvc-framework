@@ -30,19 +30,19 @@ class Core
                throw new Exception("Controller file not found: " . $controllerFile);
             }
          }
+      }
 
-         // Instantiate controller
-         require_once APPROOT . '/controllers/' . $this->currentController . '.php';
-         $this->currentController = new $this->currentController;
+      // Instantiate controller (always)
+      require_once APPROOT . '/controllers/' . $this->currentController . '.php';
+      $this->currentController = new $this->currentController;
 
-         // Validate and set method
-         if (isset($url[1]) && $this->isValidName($url[1])) {
-            if (method_exists($this->currentController, $url[1])) {
-               $this->currentMethod = $url[1];
-               unset($url[1]);
-            } else {
-               throw new Exception("Method {$url[1]} not found in controller {$this->currentController}");
-            }
+      // Validate and set method
+      if ($url && isset($url[1]) && $this->isValidName($url[1])) {
+         if (method_exists($this->currentController, $url[1])) {
+            $this->currentMethod = $url[1];
+            unset($url[1]);
+         } else {
+            throw new Exception("Method {$url[1]} not found in controller {$this->currentController}");
          }
       }
 
