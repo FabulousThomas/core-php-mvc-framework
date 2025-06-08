@@ -8,30 +8,37 @@
  */
 class Database
 {
-   private $host = DB_HOST;
+   private $host = DB_HOST; // Define in config file or .env
    private $user = DB_USER;
    private $pass = DB_PASS;
    private $dbname = DB_NAME;
-
+   private $port = 3306; // Default MySQL port, configurable if needed
+   private $charset = 'utf8mb4'; // Modern MySQL charset
    private $dbh;
    private $stmt;
    private $error;
 
    public function __construct()
    {
-      // Set DSN (DATABASE STRING NAME)
-      $dsn = 'mysql:host=' . $this->host . '; dbname=' . $this->dbname;
-      $options = array(
-         PDO::ATTR_PERSISTENT => true,
+      // Set DSN with port and charset
+      $dsn = "mysql:host={$this->host};port={$this->port};dbname={$this->dbname};charset={$this->charset}";
+
+      // PDO options
+      $options = [
+         PDO::ATTR_PERSISTENT => false, // Disabled by default, enable if needed
          PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-      );
+         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ, // Default fetch mode
+         PDO::ATTR_EMULATE_PREPARES => false, // Use native prepares for security
+      ];
 
       // Create PDO instance
       try {
          $this->dbh = new PDO($dsn, $this->user, $this->pass, $options);
       } catch (PDOException $e) {
          $this->error = $e->getMessage();
-         echo $this->error;
+         // Log error instead of echoing in production
+         error_log("Database Connection Error: " . $this->error);
+         throw new Exception("Unable to connect to the database. Please try again later.");
       }
    }
 
@@ -70,14 +77,14 @@ class Database
    public function resultSet()
    {
       $this->execute();
-      return $this->stmt->fetchAll(PDO::FETCH_OBJ);
+      return $this->stmt->fetchAll();
    }
 
    // Get single set as object
    public function singleSet()
    {
       $this->execute();
-      return $this->stmt->fetch(PDO::FETCH_OBJ);
+      return $this->stmt->fetch();
    }
 
    // Get row count
@@ -85,4 +92,44 @@ class Database
    {
       return $this->stmt->rowCount();
    }
+
+   // Get the last inserted ID
+   public function lastInsertId()
+   {
+      return $this->dbh->lastInsertId();
+   }
+
+   // Begin a transaction
+   public function beginTransaction()
+   {
+      return $this->dbh->beginTransaction();
+   }
+
+   // Commit a transaction
+   public function commit()
+   {
+      return $this->dbh->commit();
+   }
+
+   // Rollback a transaction
+   public function rollBack()
+   {
+      return $this->dbh->rollBack();
+   }
+
+   // Destructor to close connection (optional)
+   public function __destruct()
+   {
+      $this->dbh = null; // PDO closes connection automatically
+   }
+}
+
+// Example usage
+try {
+   $db = new Database();
+   $db->query("SELECT NOW()");
+   $result = $db->resultSet();
+   echo "Current server time: " . $result[0]->NOW() . " at " . date('h:i A T, l, F j, Y') . "<br>";
+} catch (Exception $e) {
+   echo $e->getMessage();
 }
