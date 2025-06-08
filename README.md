@@ -1,7 +1,7 @@
 A CORE PHP MVC FRAMEWORK FOR BUILDING WEB APPLICATIONS.
 https://www.smarty.net/documentation
 
-# Introduction:
+# Introduction
 
 The "core-php-mvc-framework" is a lightweight PHP MVC framework that is designed to be easy to use and highly customizable. It follows the Model View Controller (MVC) design pattern, which separates application logic, data, and presentation. The framework is built on Core PHP, and it provides a set of libraries and tools that can be used to build web applications quickly and efficiently.
 
@@ -53,10 +53,27 @@ In addition to its modular design, the "core-php-mvc-framework" also provides a 
 
 Overall, the "core-php-mvc-framework" is a valuable resource for developers who are looking for a lightweight and flexible PHP MVC framework that can help them build web applications quickly and efficiently.
 
-# => SITE SETTINGS <=
+# SITE SETTINGS
 
 => Open "app folder" <=
 => Locate "config folder" => Open "config.php" => REPLACE YOUR PAGE LINK || INCLUDING YOUR DATABASE CONNECTIONS <=
 => Locate "public folder" => Open ".htaccess" => Find "RewriteBase" =>
 NOTE: IF YOUR SITE IS IN A FOLDER, PUT THE FOLDER NAME THUS: /folder name/public
 BUT IF YOUR SITE IS NOT IN A FOLDER, JUST LEAVE IT THUS: /public <=
+
+# Prerequisites
+
+Install SQL Server Drivers: You need the Microsoft Drivers for PHP for SQL Server. Install them via PECL or download from Microsoft’s site.
+On Ubuntu: sudo pecl install sqlsrv pdo_sqlsrv and enable in php.ini (e.g., extension=sqlsrv.so, extension=pdo_sqlsrv.so).
+On Windows: Enable extension=php_sqlsrv.dll and extension=php_pdo_sqlsrv.dll in php.ini.
+Verify Installation: Check with phpinfo() or php -m | grep sqlsrv to ensure the drivers are loaded.
+Verification
+Test the Connection: Run the example code with valid SQL Server credentials. It should output something like "Current server time: 2025-06-08 11:22:00.000 at 11:22 AM WAT, Sunday, June 08, 2025".
+Compatibility: The class works with SQL Server 2008 and above (including Azure SQL) as of 2025, using the sqlsrv driver.
+Debugging: If errors occur, print the DSN or use var_dump($result[0]) to inspect returned data.
+Potential Issues to Watch
+Undefined Constants: Define DB_HOST, etc., to avoid fatal errors.
+Driver Availability: The mssql driver won’t work; ensure sqlsrv or dblib is installed.
+Persistent Connections: Test PDO::ATTR_PERSISTENT with your server to avoid resource issues.
+rowCount(): For SELECT queries, rowCount() may not always return the correct number of rows with the sqlsrv driver. Use SELECT COUNT(*) if needed.
+Authentication: SQL Server may require Windows Authentication or SQL Server Authentication. Adjust the DSN or credentials accordingly (e.g., sqlsrv:Server=host,port;Database=dbName;Encrypt=yes;TrustServerCertificate=true for secure connections).
