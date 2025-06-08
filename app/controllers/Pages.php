@@ -6,16 +6,8 @@ class Pages extends Controller
    // private $username = '';
    public function __construct()
    {
-   }
-
-   public function index()
-   {
-      $this->data = [
-         'title' => 'Core PHP-MVC-Framework',
-         'description' => 'A simple open source PHP-MVC-Framework'
-      ];
-      
-      $this->view('pages/index', $this->data);
+      // You can initialize any models or libraries here if needed
+      // $this->userModel = $this->model('User');
    }
 
    public function about()
