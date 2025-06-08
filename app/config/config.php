@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 // DATABASE PARAMS
 // define('DB_HOST', 'localhost');
 // define('DB_USER', 'YOUR_DATABASE_USERNAME');
@@ -19,7 +21,7 @@ define('URLROOT', 'http://localhost/core-php-mvc-framework');
 // Site Name
 define('SITENAME', 'YOUR_WEB_SITE_NAME');
 // App version
-define('APPVERSION', '1.0.0');
+define('APPVERSION', '3.1.0');
 
 // CHECK CONNECTION
 
