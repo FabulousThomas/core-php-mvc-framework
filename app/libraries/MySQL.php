@@ -123,13 +123,3 @@ class MySQL
       $this->dbh = null; // PDO closes connection automatically
    }
 }
-
-// Example usage
-try {
-   $db = new MySQL();
-   $db->query("SELECT NOW() AS now");
-   $result = $db->resultSet();
-   // echo "Current server time: " . $result[0]->now . " at " . date('h:i A T, l, F j, Y') . "<br>";
-} catch (Exception $e) {
-   echo $e->getMessage();
-}
