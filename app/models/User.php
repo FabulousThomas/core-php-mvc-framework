@@ -12,10 +12,10 @@ class User
 
    public function __construct()
    {
-      $this->db = new Database;
+      $this->db = new MySQL; // Assuming MySQL is the database class used
    }
 
-   // Users register
+   // Users register (USE CASE)
    public function register($data)
    {
       $this->db->query('INSERT INTO users (name, username, email, password) VALUES (:name, :username, :email, :password)');
@@ -33,7 +33,7 @@ class User
       }
    }
 
-   // Users login
+   // Users login (USE CASE)
    public function login($email, $password)
    {
       $this->db->query('SELECT * FROM users WHERE email = :email AND password = :password');
@@ -49,14 +49,27 @@ class User
          return false;
       }
 
+      // Uncomment the following lines if you want to use password hashing
+      // $this->db->query('SELECT * FROM users WHERE email = :email');
+      // $this->db->bind(':email', $email);
+      // // Get the user row
       // $row = $this->db->singleSet();
-
-      // $hashed_password = $row->password;
-
-      // if (password_verify($password, $hashed_password)) {
-      //    return $row;
+      // // Check if the user exists
+      // if ($this->db->rowCount() == 0) {
+      //    return false; // User not found
+      // }
+      // // // Get the hashed password from the row
+      // if (!$row) {
+      //    return false; // User not found
       // } else {
-      //    return false;
+      //    // Verify the password
+      //    $hashed_password = $row->password;
+
+      //    if (password_verify($password, $hashed_password)) {
+      //       return $row;
+      //    } else {
+      //       return false;
+      //    }
       // }
    }
 
@@ -110,5 +123,17 @@ class User
       } else {
          return false;
       }
+   }
+
+   public function select($query, $params = [])
+   {
+      $this->db->query($query);
+      if (!empty($params)) {
+         foreach ($params as $key => $value) {
+            $this->db->bind($key, $value);
+         }
+      }
+      return $this->db->resultSet();
+
    }
 }
