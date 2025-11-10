@@ -134,6 +134,5 @@ class User
          }
       }
       return $this->db->resultSet();
-
    }
 }
