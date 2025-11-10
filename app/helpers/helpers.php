@@ -7,7 +7,7 @@
  * @param string $message The message to be displayed
  * @param string $class The CSS class of the message box
  */
-function flashMsg(string $name = '', string $message = '', string $class = 'alert alert-success') : void
+function flashMsg(string $name = '', string $message = '', string $class = 'alert alert-success'): void
 {
     if (!empty($name)) {
         if (!empty($message) && empty($_SESSION[$name])) {
@@ -40,8 +40,15 @@ function isLoggedInUser(): bool
     if (isset($_SESSION['email'])) {
         return true;
     }
-
+    
     return false;
+}
+
+function ifNot($condition, $redirectTo)
+{
+    if (!$condition) {
+        redirect($redirectTo);
+    }
 }
 
 /**
@@ -49,9 +56,19 @@ function isLoggedInUser(): bool
  *
  * @param string $page The page to be redirected to
  */
-function redirect(string $page) : void
+// function redirect(string $page) : void
+// {
+//     header("Location: " . URLROOT . "/" . $page);
+// }
+
+function redirect(string $page): bool
 {
-    header("Location: " . URLROOT . "/" . $page);
+    echo "
+      <script>
+         window.location.href='" . URLROOT . "/" . $page . "';
+      </script>
+   ";
+    return true; // Ensure a return value after redirect
 }
 
 /**
@@ -84,7 +101,7 @@ function filteration(array $type): array
  * @param string $path The path where the image should be uploaded
  * @return string The name of the uploaded image
  */
-function imageUpload(string $img_name, string $path): string 
+function imageUpload(string $img_name, string $path): string
 {
     $ext = pathinfo($_FILES[$img_name]['name'], PATHINFO_EXTENSION);
     $image = random_int(1111111, 9999999) . '.' . $ext;
